@@ -1,0 +1,21 @@
+#!/bin/bash -l
+#SBATCH --job-name=moldqn_pytorch
+#SBATCH --output=rcc-%j.out 
+#SBATCH --error=rcc-%j.err
+#SBATCH --time=00:15:00 
+#SBATCH --qos=debug
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=4
+#SBATCH --cpus-per-task=1 #increase this comensurate with number of threads
+
+conda activate moldqn_torch
+
+conda info --envs
+#which python
+which python3
+
+start=$(date +%s)
+python3 -u hello.py
+end=$(date +%s)
+take=$(( end - start ))
+echo Time taken to execute commands is ${take} seconds
